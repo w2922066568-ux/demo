@@ -36,4 +36,6 @@ sha256sum --check packs/sunless-belfry.sha256
 
 ## 更新
 
+首页与图册展示 WebP 预览图，点图仍打开原尺寸 PNG。更新封面或概念原图时，在发布目录执行 `python tools/optimize-web-art.py`（需要 Pillow）。重新生成 Godot 网页时，在准备好两份 Web 专用工程后，先运行 `python tools/slim-godot.py`（需要 fontTools），再由 Godot 导入并导出。此步骤会从工程文本提取字形、保留基本拉丁字符，并将钟庭的天空纹理导入上限设为 2048。若以后增加外部对白文件，须将对应文本加入字体子集。两款游戏导出的 Wasm 完全一致时，钟庭复用礼拜堂的引擎地址。
+
 在 `Demo` 下运行 `node Demo-Pages/tools/stage.mjs`，更新已构建的静态项目、图册和演示录像。更新 Godot 作品时使用 4.7.2 的无多线程 Web 导出。重新导出无日钟庭后，运行 `node Demo-Pages/tools/finish-belfry-web.mjs`，在玩家点击或按键后捕获鼠标。若 `index.pck` 更新，运行 `node Demo-Pages/tools/pack-godot.mjs` 重新分片。若输出尺寸明显变化，核对 `packs/` 中的分片清单后再提交。
