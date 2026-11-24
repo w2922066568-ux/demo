@@ -5,14 +5,46 @@
 <meta name="description" content="可以在浏览器游玩的游戏、交互作品和美术图册。">
 <meta name="theme-color" content="#151918"><title>Demo · 作品集</title>
 <link rel="stylesheet" href="./style.css"><link rel="icon" href="./pop-up-atlas/mark.svg" type="image/svg+xml">
+<script>
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash &&
+      performance.getEntriesByType('navigation')[0]?.type !== 'back_forward') {
+    document.documentElement.dataset.opening = '';
+  }
+</script>
 </head>
 <body>
 <header class="header"><a class="wordmark" href="./">Demo</a><nav aria-label="作品目录"><a href="#browser">网页作品</a><a href="#multiplayer">好友联机</a><a href="#art">概念图册</a></nav></header>
 <main>
-  <section class="hero" aria-labelledby="title">
+  <section class="hero opening-stage" aria-labelledby="title">
     <img src="./media/previews/atlas-1440.webp" srcset="./media/previews/atlas-720.webp 720w, ./media/previews/atlas-1440.webp 1440w" sizes="100vw" alt="" fetchpriority="high">
-    <div class="hero-copy"><h1 id="title">Demo 作品集</h1><p>游戏、交互设计与概念美术。</p><a class="button" href="#browser">浏览作品</a></div>
+    <div class="opening-book" aria-hidden="true">
+      <div class="leaf leaf-left"><div class="engraving"><i></i><b></b></div></div>
+      <div class="leaf leaf-right"><div class="engraving"><i></i><b></b></div></div>
+    </div>
+    <div class="hero-copy"><h1 id="title"><em>Demo</em> <span>作品集</span></h1><p>游戏、交互设计与概念美术。</p><a class="button" href="#browser">浏览作品</a></div>
+    <button class="opening-replay" type="button" hidden><span aria-hidden="true">↺</span> 重播开场</button>
   </section>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const stage = document.querySelector('.opening-stage');
+      const button = stage.querySelector('.opening-replay');
+      const motion = matchMedia('(prefers-reduced-motion: reduce)');
+      function finish() { delete root.dataset.opening; }
+      function sync() { if (motion.matches) finish(); button.hidden = motion.matches; }
+      stage.addEventListener('animationend', e => {
+        if (e.animationName === 'folio-finish') finish();
+      });
+      button.addEventListener('click', () => {
+        finish();
+        void stage.offsetWidth;
+        if (!motion.matches) root.dataset.opening = '';
+      });
+      window.addEventListener('pagehide', finish);
+      motion.addEventListener('change', sync);
+      sync();
+    })();
+  </script>
   <section class="section" id="browser">
     <div class="section-heading"><h2>网页作品</h2><p>点击作品，在浏览器中打开。</p></div>
     <div class="grid">
