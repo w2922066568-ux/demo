@@ -1,0 +1,14 @@
+Cape Meridian coastal meadow
+
+The 2048 x 2048 foliage atlas contains locally re-rendered views of five
+Poly Haven plant models. Source meshes and textures are CC0.
+
+https://polyhaven.com/a/grass_medium_01
+https://polyhaven.com/a/grass_medium_02
+https://polyhaven.com/a/shrub_02
+https://polyhaven.com/a/shrub_03
+https://polyhaven.com/a/flower_stinkkruid
+https://polyhaven.com/license
+
+The sea-thrift and oat heads, folded grass blades, and gulls were made
+procedurally for this scene.

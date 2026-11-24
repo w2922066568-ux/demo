@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#121014">
+  <meta name="description" content="Forma Index 形态研究所，一场可以亲手探索的数字雕塑展。">
+  <title>Forma Index · 形态研究所</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=rooms3">
+  <link rel="stylesheet" href="scene-shell.css?v=rooms3">
+  <link rel="stylesheet" href="rooms.css?v=rooms3">
+  <script src="sculpture.js?v=rooms3" defer></script>
+  <script src="stage-light.js?v=rooms3" defer></script>
+  <script src="study-motion.js?v=rooms3" defer></script>
+  <script src="room-art.js?v=rooms3" defer></script>
+  <script src="scene-transition.js?v=rooms3" defer></script>
+  <script src="scene-router.js?v=rooms3" defer></script>
+  <script src="app.js?v=rooms3" defer></script>
+</head>
+<body>
+  <a class="skip" href="#works">跳至作品典藏</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#exhibition" aria-label="Forma Index 展厅首页"><i class="brand-mark" aria-hidden="true"></i><span>Forma Index</span></a>
+      <nav class="desktop-nav" aria-label="主导航">
+        <a href="#exhibition" aria-current="location">展厅</a><a href="#works">作品典藏</a><a href="#notes">设计手记</a><a href="#about">关于</a>
+      </nav>
+      <div class="header-actions">
+        <button class="sound" id="sound" type="button" aria-label="开启环境音" aria-pressed="false"><i class="wave" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b></i><span>声音</span><span class="sound-state">关</span></button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="打开导航" aria-controls="mobileNav" aria-expanded="false"><i></i><i></i></button>
+      </div>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-label="移动导航" hidden><a href="#exhibition">展厅</a><a href="#works">作品典藏</a><a href="#notes">设计手记</a><a href="#about">关于</a></nav>
+  </header>
+  <main id="sceneViewport">
+    <section id="exhibition" class="hero" aria-labelledby="heroTitle" data-art="bloom">
+      <div class="hero-wash" aria-hidden="true"></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow hero-kicker"><span class="line"></span>数字艺术展<span class="kicker-slash">/</span>DIGITAL EXHIBITION</p>
+          <h1 class="hero-title" id="heroTitle" lang="en"><span>Form in</span><em>Motion<span class="period">.</span></em></h1>
+          <p class="intro-title">形态，在运动中诞生。</p>
+          <p class="intro-sub"><span class="desktop-hint">三件动态雕塑，四幕交互展览。用左右方向键换幕。</span><span class="touch-hint">左右轻扫换幕，拖动时间轴定格形态。</span></p>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#works"><i class="grid-icon" aria-hidden="true"></i>进入作品典藏</a>
+            <button class="screen-btn" type="button" id="startScreen"><i class="play-icon" aria-hidden="true"></i>全屏展映</button>
+          </div>
+        </div>
+        <figure class="hero-stage">
+          <div class="stage-guides" aria-hidden="true"><span class="orbit-guide g1"></span><span class="orbit-guide g2"></span><span class="cross c1"></span><span class="cross c2"></span><span class="cross c3"></span><span class="cross c4"></span></div>
+          <canvas class="light-field" id="heroField" aria-hidden="true"></canvas>
+          <div class="hero-object"><canvas id="heroCanvas" role="img" aria-label="褶光，珊瑚粉色的褶皱雕塑"></canvas></div>
+          <figcaption class="stage-caption"><i class="cross" aria-hidden="true"></i><span class="fig-num">FIG. <span id="figNumber">01</span></span><span class="caption-line"></span><span id="figName">褶光</span><em lang="en" id="figEnglish">Folded Bloom</em></figcaption>
+        </figure>
+        <div class="hero-base">
+          <div class="transport">
+            <button type="button" id="heroPause" class="transport-play motion-toggle" aria-label="暂停动态" aria-pressed="false"><span class="pause-glyph" aria-hidden="true"></span><span id="playLabel">暂停动态</span></button>
+            <label for="heroSeek" class="seek-caption">时间轴</label>
+            <input id="heroSeek" class="hero-seek" type="range" min="0" max="24" value="0" step="0.02" aria-label="拖动展演时间轴">
+            <output for="heroSeek" id="heroClock" aria-live="off">00:00 / 00:24</output>
+            <button type="button" id="heroRate" title="切换播放速度" aria-label="切换播放速度，当前一倍速">1×</button>
+          </div>
+          <div class="scene-switcher" role="group" aria-label="切换展厅雕塑">
+            <button type="button" data-scene="0" aria-label="展品一，褶光" aria-pressed="true">01 <span>褶光</span></button>
+            <button type="button" data-scene="1" aria-label="展品二，环蚀" aria-pressed="false">02 <span>环蚀</span></button>
+            <button type="button" data-scene="2" aria-label="展品三，层峦" aria-pressed="false">03 <span>层峦</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="works" class="works container" aria-labelledby="worksTitle">
+      <div class="section-head">
+        <div><p class="eyebrow section-eyebrow"><i class="tiny-star" aria-hidden="true">✳</i> SELECTED WORKS</p><h2 id="worksTitle">作品典藏<sup>（03）</sup></h2></div>
+        <div class="view-switch" role="group" aria-label="作品排列方式">
+          <button id="gridView" type="button" aria-label="网格视图" title="网格视图" aria-pressed="true"><i class="grid-icon" aria-hidden="true"></i></button>
+          <button id="listView" type="button" aria-label="列表视图" title="列表视图" aria-pressed="false"><i class="list-icon" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="works-grid" id="workGrid">
+        <button type="button" class="work-card" data-work="0" aria-label="查看褶光，Folded Bloom，作品详情">
+          <div class="card-image bloom"><img src="assets/bloom.webp" width="960" height="640" alt="珊瑚粉色的褶面像花瓣一样层层翻卷"><span class="card-code">FIG. 01</span><span class="card-open" aria-hidden="true">＋</span></div>
+          <div class="card-info"><div><h3>褶光 <em lang="en">Folded Bloom</em></h3><p>生成雕塑 <span>／</span> 褶皱研究</p></div><span class="swatch sw-bloom" aria-hidden="true"></span></div>
+        </button>
+        <button type="button" class="work-card" data-work="1" aria-label="查看环蚀，Orbital Drift，作品详情">
+          <div class="card-image orbit"><img src="assets/orbit.webp" width="960" height="640" alt="浅紫色空间中反射光线的环形雕塑"><span class="card-code">FIG. 02</span><span class="card-open" aria-hidden="true">＋</span></div>
+          <div class="card-info"><div><h3>环蚀 <em lang="en">Orbital Drift</em></h3><p>光学形态 <span>／</span> 轨道研究</p></div><span class="swatch sw-orbit" aria-hidden="true"></span></div>
+        </button>
+        <button type="button" class="work-card" data-work="2" aria-label="查看层峦，Soft Strata，作品详情">
+          <div class="card-image strata"><img src="assets/strata.webp" width="960" height="640" alt="琥珀色薄层沿起伏的地形堆叠"><span class="card-code">FIG. 03</span><span class="card-open" aria-hidden="true">＋</span></div>
+          <div class="card-info"><div><h3>层峦 <em lang="en">Soft Strata</em></h3><p>数字地貌 <span>／</span> 切片研究</p></div><span class="swatch sw-strata" aria-hidden="true"></span></div>
+        </button>
+      </div>
+    </section>
+    <section class="notes" id="notes" aria-labelledby="notesTitle">
+      <div class="container notes-layout">
+        <div class="note-copy"><p class="eyebrow section-eyebrow"><i class="tiny-star" aria-hidden="true">✳</i> FIELD NOTES</p><h2 id="notesTitle">设计手记</h2>
+          <div class="note-tabs" role="group" aria-label="选择手记"><button type="button" data-note="0" aria-pressed="true">折叠</button><button type="button" data-note="1" aria-pressed="false">绕行</button><button type="button" data-note="2" aria-pressed="false">层叠</button></div>
+          <h3 id="noteTitle">一条曲线，如何长成一朵花？</h3><p id="noteText">沿同一条闭合曲线逐层旋转截面，微小的角度差会累积成花瓣。拖动滑杆，观察平整的线圈如何展开褶皱。</p>
+        </div>
+        <div class="study-panel" id="studyPanel"><div class="study-label"><span>形态草图</span><span id="studyId">STUDY / FOLD</span></div><canvas id="studyCanvas" aria-label="可调节的线框形态草图" role="img"></canvas><div class="study-slider"><label for="studyValue" id="studyParam">折叠幅度</label><input id="studyValue" type="range" min="0" max="100" value="64"><output id="studyResult" for="studyValue">64%</output></div></div>
+      </div>
+    </section>
+    <section id="about" class="container about" aria-labelledby="aboutTitle"><p class="eyebrow section-eyebrow"><i class="tiny-star" aria-hidden="true">✳</i> ABOUT THE EXHIBITION</p><div class="about-grid"><div><h2 id="aboutTitle">关于形态研究所</h2><p>Forma Index 是一份自主概念设计作品。三件数字雕塑共用一座展厅，分别以织物的褶皱、环体的负空间与地形的切片，探索同一个问题：运动如何改变我们对形态的感知？</p></div><dl><div><dt>设计方向</dt><dd>艺术指导 · 交互设计</dd></div><div><dt>实现方式</dt><dd>WebGL · Canvas · JavaScript</dd></div><div><dt>作品年份</dt><dd>2026</dd></div></dl></div></section>
+  </main>
+  <footer class="scene-dock" aria-label="场景导航">
+    <div class="container dock-inner">
+      <button class="map-trigger" id="openMap" aria-haspopup="dialog" aria-controls="sceneMap" type="button"><i class="map-symbol" aria-hidden="true"><b></b><b></b><b></b></i>场景总览</button>
+      <div class="dock-current"><em id="dockNumber">01</em><i aria-hidden="true"></i><span>04</span><span id="dockTitle">展厅</span></div>
+      <a class="dock-next" id="nextRoom" href="#works"><span class="next-thumb" aria-hidden="true"><img id="nextImage" alt=""></span><span class="next-label">下一幕</span><strong id="nextTitle">作品典藏</strong><i class="next-notch" aria-hidden="true"></i></a>
+    </div>
+  </footer>
+  <dialog class="scene-map" id="sceneMap" aria-labelledby="mapTitle">
+    <div class="map-content">
+      <div class="map-head"><div><p class="eyebrow">EXHIBITION MAP</p><h2 id="mapTitle">场景总览</h2></div><button class="close-btn" id="closeMap" type="button" aria-label="关闭场景总览"><i></i></button></div>
+      <nav class="map-grid" aria-label="选择展览场景">
+        <a href="#exhibition" class="map-card map-home"><div class="map-plate"><img data-map-image="assets/sculpture-bloom.webp" alt=""></div><span class="map-index">01</span><h3>展厅</h3><em>Exhibition</em></a>
+        <a href="#works" class="map-card map-works"><div class="map-plate"><img data-map-image="assets/bloom.webp" alt=""></div><span class="map-index">02</span><h3>作品典藏</h3><em>Collection</em></a>
+        <a href="#notes" class="map-card map-notes"><div class="map-plate"><img data-map-image="assets/sculpture-orbit.webp" alt=""></div><span class="map-index">03</span><h3>设计手记</h3><em>Motion Lab</em></a>
+        <a href="#about" class="map-card map-about"><div class="map-plate"><img data-map-image="assets/strata.webp" alt=""></div><span class="map-index">04</span><h3>关于展览</h3><em>Colophon</em></a>
+      </nav>
+    </div>
+  </dialog>
+  <dialog class="project-dialog" id="projectDialog" aria-labelledby="detailTitle">
+    <div class="dialog-inner"><button class="close-btn" type="button" aria-label="关闭作品详情" data-close="projectDialog"><i></i></button><div class="detail-plate"><img id="detailImg" alt=""><span class="detail-tag" id="detailFig"></span></div>
+      <div class="detail-copy"><p class="eyebrow" id="detailCat"></p><h2 id="detailTitle"></h2><em class="detail-en" id="detailEn" lang="en"></em><p id="detailDesc"></p><dl id="detailMeta"></dl><div class="detail-actions"><button class="primary-btn" id="detailView" type="button"><i class="play-icon" aria-hidden="true"></i>在展厅中观看</button><button class="next-link" id="detailNext" type="button">下一件作品</button></div></div>
+    </div>
+  </dialog>
+  <dialog class="cinema" id="cinema" aria-labelledby="filmTitle">
+    <div class="film-inner"><div class="film-header"><span class="brand"><i class="brand-mark" aria-hidden="true"></i><span>Forma Index</span></span><button class="close-btn" type="button" aria-label="退出展映" data-close="cinema"><i></i></button></div>
+      <canvas class="light-field" id="filmField" aria-hidden="true"></canvas>
+      <canvas id="filmCanvas" role="img" aria-label="全屏动态雕塑展映"></canvas>
+      <div class="film-info"><p class="eyebrow" id="filmNumber">展映 / 01</p><h2 id="filmTitle" lang="en">Folded Bloom</h2><p id="filmSub">褶光</p></div>
+      <div class="film-controls"><button type="button" id="filmPlay" class="icon-btn motion-toggle" aria-label="暂停展映"><span class="pause-glyph" aria-hidden="true"></span></button><div class="film-timeline" role="group" aria-label="展映章节"><button type="button" data-film="0" aria-label="第一章，褶光"><i></i></button><button type="button" data-film="1" aria-label="第二章，环蚀"><i></i></button><button type="button" data-film="2" aria-label="第三章，层峦"><i></i></button></div><span id="filmTime">00:00 / 00:24</span></div>
+    </div>
+  </dialog>
+</body>
+</html>

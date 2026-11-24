@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="theme-color" content="#06161c" />
+    <meta
+      name="description"
+      content="深渊回声是一款可直接在浏览器中游玩的深海勘探游戏。驾驶虎鲸七号，穿越三个航区，循着声呐寻找失落的信标。"
+    />
+    <title>HADAL ECHOES · 深渊回声</title>
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="preload" as="image" href="assets/trench.webp" />
+
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="icons.js"></script>
+    <script defer src="audio.js"></script>
+    <script defer src="engine/three.min.js"></script>
+    <script defer src="engine/surfaces.js"></script>
+    <script defer src="engine/world.js"></script>
+    <script defer src="engine/vessel.js"></script>
+    <script defer src="engine/whale.js"></script>
+    <script defer src="engine/renderer.js"></script>
+    <script defer src="game.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <div id="shell">
+      <div id="hangar">
+        <div class="hero-art" aria-hidden="true"></div>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <canvas id="plankton" aria-hidden="true"></canvas>
+        <header class="topbar">
+          <div class="brand" aria-label="Pelagic 深海勘探局">
+            <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span
+            ><span class="brand-type">PELAGIC<small>EXPLORATION SYSTEMS</small></span>
+          </div>
+          <nav aria-label="主导航">
+            <button class="nav-on" id="nav-deck">指挥甲板</button
+            ><button id="nav-log">潜航日志<span id="log-dot"></span></button>
+          </nav>
+          <div class="top-tools">
+            <button id="sound" class="tool-btn" title="切换声音" aria-label="开启声音">
+              <i data-icon="sound-off"></i><span>声音关闭</span></button
+            ><span class="tool-divider"></span
+            ><button id="fullscreen" class="square-tool" aria-label="进入全屏" title="全屏">
+              <i data-icon="expand"></i>
+            </button>
+          </div>
+        </header>
+        <main class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow">
+              <span class="live-stroke"></span>深海勘探计划<span class="small-slash">/</span
+              ><span class="mono">EXP. 001</span>
+            </div>
+            <h1 aria-label="Hadal Echoes"><span>HADAL</span><span>ECHOES</span></h1>
+            <div class="zh-title">
+              <span>深渊回声</span><span class="zh-rule"></span><i data-icon="wave"></i>
+            </div>
+            <p class="premise">
+              海面之下 3,800 米，失联的信标再次响起。<br />驾驶「虎鲸七号」，循着回声驶入深渊。
+            </p>
+            <div class="cta-row">
+              <button class="primary" id="launch">
+                <i data-icon="play"></i><span id="launch-text">开始下潜</span
+                ><i data-icon="arrow-right"></i></button
+              ><button class="secondary" id="help"><i data-icon="keyboard"></i>操作指南</button>
+            </div>
+          </div>
+          <div class="depth-scale" aria-hidden="true">
+            <span>00</span><em></em><span>50</span><em></em><span>100</span>
+          </div>
+          <div class="vessel-tag" aria-hidden="true">
+            <div class="tag-pointer"></div>
+            <div><b>ORCA–07</b><small>深海勘探潜航器</small></div>
+          </div>
+        </main>
+        <section class="route-deck" aria-labelledby="route-title">
+          <div class="route-heading">
+            <div>
+              <i data-icon="route"></i>
+              <h2 id="route-title">勘探航线</h2>
+              <span class="mono">DIVE ROUTE</span>
+            </div>
+            <div class="route-count mono"><b>03</b> SECTORS</div>
+          </div>
+          <div class="route-grid" id="route-grid"></div>
+        </section>
+        <footer class="statusbar">
+          <span class="system"><i></i>系统在线<span class="mono">SYSTEM ONLINE</span></span
+          ><span class="coordinates mono"><i data-icon="crosshair"></i>11°21′ N &nbsp; 142°12′ E</span
+          ><span class="hydrophone"
+            ><span id="wave-bars" aria-hidden="true"></span><span class="mono">HYDROPHONE</span></span
+          >
+        </footer>
+      </div>
+      <section id="dive" aria-label="驾驶舱" hidden>
+        <div id="world"></div>
+        <div id="hud">
+          <div class="hud-top">
+            <div class="hud-location">
+              <div class="tiny orange"><i class="signal-dot"></i> LIVE FEED &nbsp;/&nbsp; ORCA–07</div>
+              <h2 id="hud-sector">裂隙入口</h2>
+              <div class="tiny" id="hud-zone">SECTOR 01</div>
+            </div>
+            <div class="compass">
+              <div class="compass-value mono" id="heading">000° N</div>
+              <div class="compass-track" id="compass-track"></div>
+              <i></i>
+            </div>
+            <div class="hud-actions">
+              <button class="hud-tool" id="hud-sound" aria-label="切换声音">
+                <i data-icon="sound-off"></i></button
+              ><button class="hud-tool" id="pause" aria-label="暂停游戏">
+                <i data-icon="pause"></i>
+              </button>
+            </div>
+          </div>
+          <div class="signal-marker" hidden id="marker">
+            <div class="marker-shape"><i></i></div>
+            <span class="mono" id="marker-range"></span>
+          </div>
+          <div class="hud-message" id="hud-message" role="status"></div>
+          <div class="mission-hud">
+            <div class="tiny">
+              <i class="signal-dot"></i> MISSION <span id="beacon-count">00 / 03</span>
+            </div>
+            <b id="mission-title">定位声学信标</b><small id="mission-tip">按空格发射声呐</small>
+            <div class="mission-progress"><i></i><i></i><i></i></div>
+          </div>
+          <div class="sonar-scope" aria-label="声呐方位仪">
+            <canvas id="scope" width="224" height="224"></canvas><small class="mono">ACTIVE SONAR</small>
+          </div>
+          <div class="telemetry">
+            <div>
+              <span class="tiny">DEPTH / 深度</span
+              ><strong><span id="hud-depth">3,800</span> <small>M</small></strong>
+            </div>
+            <div>
+              <span class="tiny">SPEED / 航速</span
+              ><strong><span id="hud-speed">0.0</span> <small>M/S</small></strong>
+            </div>
+          </div>
+          <div id="action-hint" class="action-hint"></div>
+          <div class="flight-controls">
+            <span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 驾驶</span
+            ><span><kbd>R</kbd><kbd>F</kbd> 升降</span><span><kbd>SHIFT</kbd> 加速</span
+            ><button id="flight-help" aria-label="打开操作指南"><i data-icon="keyboard"></i></button>
+          </div>
+          <div class="touch-controls">
+            <div class="dpad">
+              <button data-action="forward" aria-label="前进">↑</button
+              ><button data-action="left" aria-label="左转">←</button
+              ><button data-action="back" aria-label="后退">↓</button
+              ><button data-action="right" aria-label="右转">→</button>
+            </div>
+            <div class="vertical-pad">
+              <button data-action="rise" aria-label="上浮">浮</button
+              ><button data-action="dive" aria-label="下潜">潜</button
+              ><button data-action="boost" aria-label="加速">速</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <dialog id="panel" aria-labelledby="panel-title"><div id="panel-inner"></div></dialog>
+      <div id="curtain" aria-hidden="true">
+        <span class="descent-icon" data-icon="depth"></span><span>正在下潜</span
+        ><small>DESCENDING</small>
+      </div>
+    </div>
+  </body>
+</html>

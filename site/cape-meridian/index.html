@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#182525"><title>风岬岛 · Windward — 远岸测绘所</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='7' fill='%23233230'/%3E%3Cpath d='m20 3 4 13 13 4-13 4-4 13-4-13-13-4 13-4Z' fill='%23e8ae64'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./style.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+<svg id="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+ <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+ <symbol id="i-journal" viewBox="0 0 24 24"><path d="M5 4h14v16H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm3 0v16m4-11h4m-4 3h3"/></symbol>
+ <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 6h7m5 0h4M4 12h2m5 0h9M4 18h10m5 0h1"/><circle cx="13.6" cy="6" r="2.2"/><circle cx="8.8" cy="12" r="2.2"/><circle cx="16.4" cy="18" r="2.2"/></symbol>
+ <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+ <symbol id="i-sound" viewBox="0 0 24 24"><path d="M3 10v4m4-7v10m4-14v18m4-15v12m4-8v4"/></symbol>
+ <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4 10v4m4-7v10m4-13v16m4-9 5 5m0-5-5 5"/></symbol>
+ <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3Zm6-3v15m6-12v15"/></symbol>
+ <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14m8-14v14" stroke-width="3"/></symbol>
+ <symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/></symbol>
+ <symbol id="i-wind" viewBox="0 0 24 24"><path d="M2 9h11a3 3 0 1 0-3-3m-8 7h16a3 3 0 1 0-3-3m-9 7h7a2 2 0 1 1-2 2"/></symbol>
+ <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+ <symbol id="i-pin" viewBox="0 0 24 24"><path d="m12 2 8 8-8 12-8-12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+ <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 10V4h6m4 0h6v6m0 4v6h-6m-4 0H4v-6"/></symbol>
+ <symbol id="i-compass" viewBox="0 0 64 64"><g fill="none" stroke="currentColor"><circle cx="32" cy="32" r="24" stroke-width="1.2"/><circle cx="32" cy="32" r="19" stroke-width=".5" stroke-dasharray="1 3"/><path d="m12 12 40 40m0-40L12 52M32 2v60M2 32h60" stroke-width=".75"/></g><path d="m32 3 5.6 22.9L61 32l-23.4 5.8L32 61l-5.8-23.2L3 32l23.2-6.1Z" stroke="currentColor" stroke-width="1.3" fill="none"/><path d="M32 3v29l5.6-6.1ZM61 32H32l5.6 5.8ZM32 61V32l-5.8 5.8ZM3 32h29l-5.8-6.1Z" fill="currentColor" stroke="none"/></symbol>
+</defs></svg>
+<div id="world" aria-label="可探索的风岬岛三维场景"></div>
+<section id="cover" aria-label="风岬岛主菜单">
+ <div class="cover-art"></div><div class="cover-shade"></div><div class="grain"></div>
+ <header class="cover-top">
+   <div class="brand"><svg class="rose"><use href="#i-compass"/></svg><div><strong>远岸测绘所</strong><small>OFFSHORE SURVEY</small></div></div>
+   <div class="top-actions"><button class="glass sound" data-action="audio" aria-label="切换环境声"><svg><use href="#i-sound"/></svg><span>环境声</span></button><button class="glass circle" data-action="settings" aria-label="设置"><svg><use href="#i-settings"/></svg></button></div>
+ </header>
+ <main class="cover-main">
+  <div class="eyebrow gold"><i></i> FIELD ATLAS <b>/</b> VOL. 01</div>
+  <h1>Windward</h1>
+  <div class="cn-title">风岬岛</div>
+  <p class="intro">沿着旧巡护道，穿过海雾与草甸，<br>寻访北大西洋尽头的三处航海遗迹。</p>
+  <div class="cover-actions"><button class="enter" data-action="enter"><span id="enter-label">进入海岬</span><svg><use href="#i-arrow"/></svg></button><button class="journal-link" data-action="map"><svg><use href="#i-journal"/></svg>野外手册</button></div>
+ </main>
+ <aside class="place-note"><div class="place-stroke"><i></i></div><small>FIG. 01</small><span>北岬灯塔</span><em>North Cape Light</em></aside>
+ <footer class="cover-foot"><div class="foot-location"><svg><use href="#i-compass"/></svg><span>北大西洋</span><i></i><b>NORTH ATLANTIC</b></div><div class="coords">62° 18′ N <i></i> 06° 47′ W</div><div class="weather"><svg><use href="#i-wind"/></svg> NW <i></i> 12 KN</div></footer>
+</section>
+<section id="hud" hidden aria-label="探索界面">
+ <div class="hud-top"><div class="hud-brand"><svg class="rose"><use href="#i-compass"/></svg><div><b>风岬岛</b><small>WINDWARD ISLE</small></div></div><div id="compass"><div id="compass-tape"></div><i></i></div><div class="top-actions"><button data-action="map" class="glass circle" aria-label="地图与手册"><svg><use href="#i-map"/></svg></button><button data-action="pause" class="glass circle" aria-label="暂停"><svg><use href="#i-pause"/></svg></button></div></div>
+ <div id="scope" hidden><div class="scope-ring"><i class="scope-ticks"></i><span>3×32　 FIELD MONOCULAR</span></div></div>
+ <div id="waypoint" hidden><i></i><span></span></div><div id="reticle"></div>
+ <div id="interaction" hidden><button data-action="interact"><kbd>E</kbd><span></span></button></div>
+ <div id="travel-note" hidden><small>FIELD RECORD</small><strong></strong><span></span></div>
+ <div class="hud-bottom"><button class="objective" data-action="map"><span class="eyebrow gold" id="obj-code">FIELD SURVEY　/　00 OF 03</span><strong id="obj-title">海岬巡查</strong><span id="obj-copy">沿巡护道寻访三处地标</span></button><div class="hints"><span><kbd>B</kbd>观测镜</span><span><kbd>M</kbd>地图</span><span><kbd>P</kbd>摄影</span><span><kbd>Esc</kbd>暂停</span></div></div>
+ <div id="touch-pad"><div></div></div><button id="touch-jump" data-action="jump" aria-label="跳跃">↑</button>
+</section>
+<div id="photo-hud" hidden><div class="view-frame"></div><div class="photo-bar"><span class="eyebrow">FIELD CAMERA</span><button data-action="shutter"><svg><use href="#i-camera"/></svg> 保存画面 <kbd>F</kbd></button><button data-action="photo">收起相机 <kbd>P</kbd></button></div></div>
+<div id="loading" hidden role="status"><svg class="rose"><use href="#i-compass"/></svg><strong>正在接近海岬</strong><small>CHARTING THE COAST</small><div class="progress"><i></i></div></div>
+<div id="veil" hidden>
+ <section id="panel-map" class="panel atlas-panel" role="dialog" aria-modal="true" aria-labelledby="map-title" hidden>
+   <header class="panel-header"><div><div class="eyebrow">OFFSHORE SURVEY <b>/</b> FIELD NOTES</div><h2 id="map-title">野外手册 <em>Field journal</em></h2></div><button class="paper-icon" data-action="close" aria-label="合上手册"><svg><use href="#i-close"/></svg></button></header>
+   <div class="atlas-body"><div class="map-sheet"><canvas id="chart" aria-label="风岬岛等高线地图与地标"></canvas><div class="map-caption"><b>风岬岛</b><em>Windward Isle</em></div><span class="map-scale">0 ├────┤ 50 m</span><span class="north">N<br>↑</span></div><div class="records"><div class="records-heading"><span>海岬巡查</span><b id="record-count">0 / 3</b></div><div id="record-list"></div><div id="record-details"></div></div></div>
+ </section>
+ <section class="panel small-panel" id="panel-settings" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+  <header class="panel-header"><div><div class="eyebrow">FIELD EQUIPMENT</div><h2 id="settings-title">探索设置</h2></div><button class="paper-icon" data-action="close" aria-label="关闭设置"><svg><use href="#i-close"/></svg></button></header>
+  <div class="settings-list"><div class="setting"><span>渲染精度</span><div class="switch" data-setting="quality"><button data-value="high">高画质</button><button data-value="ultra">极致</button></div></div>
+  <div class="setting"><span>天光</span><div class="switch" data-setting="mood"><button data-value="day">云间晴光</button><button data-value="gold">落日余晖</button></div></div>
+  <div class="setting"><span>环境声</span><button class="text-button" data-action="audio" id="setting-audio">开启</button></div>
+  <label class="setting"><span>视角灵敏度</span><input id="sensitivity" type="range" min="0.5" max="2" step=".05"></label>
+  <div class="setting"><span>显示模式</span><button class="text-button" data-action="fullscreen">切换全屏 <svg><use href="#i-expand"/></svg></button></div>
+  <details class="credits"><summary>制作与素材</summary><p>实时场景使用 three.js。岩石、植被与天空取材自 Poly Haven，远岛高程取自 Mapzen Terrain Tiles。字体为 Baskervville 与 DM Sans。封面由 ImageGen 制作。</p><p><a href="https://polyhaven.com" target="_blank" rel="noopener">Poly Haven</a>　<a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md" target="_blank" rel="noopener">地形署名</a>　<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a></p></details></div>
+ </section>
+ <section class="panel small-panel" id="panel-pause" role="dialog" aria-modal="true" aria-labelledby="pause-title" hidden>
+  <header class="panel-header"><div><div class="eyebrow">WINDWARD <b>/</b> EXPEDITION</div><h2 id="pause-title">途中休息</h2></div><svg class="paper-rose"><use href="#i-compass"/></svg></header>
+  <div class="pause-actions"><button class="dark-button" data-action="close">继续探索<svg><use href="#i-arrow"/></svg></button><button data-action="map">野外手册 <kbd>M</kbd></button><button data-action="settings">探索设置<svg><use href="#i-settings"/></svg></button><button data-action="home">返回封面<svg><use href="#i-journal"/></svg></button></div>
+  <p class="controls-copy">WASD 移动　·　鼠标环视　·　Shift 奔跑<br>空格跳跃　·　E 调查　·　B 观测镜　·　P 摄影</p>
+ </section>
+</div>
+<div id="toast" role="status" hidden></div>
+<script type="module" src="./src/app.js"></script>
+</body></html>
+

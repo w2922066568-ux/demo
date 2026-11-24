@@ -1,0 +1,26 @@
+Poly Haven photogrammetry and photographic surface maps
+CC0 1.0 Universal — https://polyhaven.com/license
+
+Grass Ground — Charlotte Baglioni
+https://polyhaven.com/a/grass_ground
+
+Grass Path 2 — Rob Tuytel
+https://polyhaven.com/a/grass_path_2
+
+Cliff Side — James Ray Cock, Dario Barresi and Jenelle van Heerden
+https://polyhaven.com/a/cliff_side
+
+Aerial Grass Rock — Rob Tuytel
+https://polyhaven.com/a/aerial_grass_rock
+
+Aerial Rocks 02 — Rob Tuytel
+https://polyhaven.com/a/aerial_rocks_02
+
+Coastal Cliff 01 — Rob Tuytel and Rico Cilliers
+https://polyhaven.com/a/coastal_cliff_01
+
+Rock 09 — Jenelle van Heerden
+https://polyhaven.com/a/rock_09
+
+Images have been resized, colour graded, or recompressed. Scan meshes
+have been decimated and converted into a local interleaved mesh format.

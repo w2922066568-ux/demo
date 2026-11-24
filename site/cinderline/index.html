@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111413"><meta name="description" content="Deploy to Ashfall Foundry in Cinderline, a single-player sci-fi first-person shooter.">
+<title>Cinderline — Ashfall Foundry</title>
+<link rel="icon" href="assets/brand.svg"><link rel="stylesheet" href="style.css">
+<script defer src="engine/three.min.js"></script><script defer src="assets/arena/surfaces.js"></script><script defer src="assets/arena/backdrop.js"></script><script defer src="arena.js"></script><script defer src="models.js"></script><script defer src="render.js"></script><script defer src="game.js"></script><script defer src="intel.js"></script><script defer src="audio.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+<symbol id="brand" viewBox="0 0 46 34"><path fill="currentColor" d="M0 30 14 4h9L9 30zm13 0L27 4h9L22 30zm13 0 9-17 5 9-4 8z"/></symbol>
+<symbol id="i-sound" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3zM16 8c2 2 2 6 0 8m3-11c4 4 4 10 0 14"/></symbol>
+<symbol id="i-muted" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3zM16 9l6 6m0-6-6 6"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><path d="m10 3-.6 2.4-2 .9-2.2-.8-2 3.4 1.8 1.7v2.6l-1.8 1.7 2 3.4 2.2-.8 2 .9.6 2.4h4l.6-2.4 2-.9 2.2.8 2-3.4-1.8-1.7v-2.6l1.8-1.7-2-3.4-2.2.8-2-.9L14 3z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-cross" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/><path d="M12 1v6m0 10v6M1 12h6m10 0h6"/><circle cx="12" cy="12" r="1"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M3 12h16m-6-6 6 6-6 6"/></symbol>
+<symbol id="i-open" viewBox="0 0 24 24"><path d="M5 19 18 6m-10 0h10v10"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M18 10c0 5-6 10-6 10S6 15 6 10a6 6 0 1 1 12 0z"/><circle cx="12" cy="10" r="2"/></symbol>
+<symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="7" r="3.5"/><path d="M5 20v-2a7 7 0 0 1 14 0v2z"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 4v16M16 4v16"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 8 3v6q0 7-8 11-8-4-8-11V5z"/><path d="M12 7v8m-4-4h8"/></symbol>
+</defs></svg>
+<main id="base">
+<header class="mast">
+<a class="identity" href="#operations" aria-label="Cinderline operations"><svg class="brand-mark"><use href="#brand"/></svg><span>CINDERLINE</span></a>
+<nav aria-label="Main navigation"><button class="nav-item active" id="opsTab">Operations</button><button class="nav-item" data-open="manual">Field manual</button></nav>
+<div class="header-tools"><span class="sys-status"><i></i>SYSTEM ONLINE</span><button class="icon-btn sound-btn" title="Mute audio" aria-label="Mute audio"><svg><use href="#i-sound"/></svg></button><button class="icon-btn" data-open="settings" title="Settings" aria-label="Settings"><svg><use href="#i-gear"/></svg></button></div>
+</header>
+<section class="hero" id="operations" aria-labelledby="missionTitle">
+<div class="key-art"></div><div class="hero-shade"></div><canvas id="embers" aria-hidden="true"></canvas>
+<div class="hero-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="hero-text">
+<div class="eyebrow"><span class="signal-bars"><i></i><i></i><i></i></span>OPERATION 01 <span class="eyediv">/</span> ASHFALL</div>
+<h1 id="missionTitle">CINDERLINE</h1>
+<p class="pitch">Breach the foundry. Silence the machines.</p>
+<div class="hero-meta"><span><svg><use href="#i-person"/></svg>Single player</span><b></b><span>First-person shooter</span></div>
+<button class="deploy" id="deploy"><svg><use href="#i-cross"/></svg><strong>DEPLOY</strong><span><svg><use href="#i-arrow"/></svg></span></button>
+</div>
+<div class="hero-locator"><span class="locator-line"></span><svg><use href="#i-pin"/></svg> ASHFALL FOUNDRY <em>//</em> EXT. 07</div>
+</section>
+<section class="intel" aria-labelledby="intelTitle">
+<div class="section-line"><h2 id="intelTitle">Deployment intel</h2><span></span><small>03 FILES</small></div>
+<div class="intel-grid">
+<button class="intel-card" data-open="theater"><canvas data-diagram="theater"></canvas><div class="intel-copy"><small><i></i> 01 / THEATER</small><h3>Ashfall Foundry</h3></div><svg class="card-arrow"><use href="#i-open"/></svg></button>
+<button class="intel-card" data-open="weapon"><canvas data-diagram="weapon"></canvas><div class="intel-copy"><small><i></i> 02 / LOADOUT</small><h3>VX-7 Arc Carbine</h3></div><svg class="card-arrow"><use href="#i-open"/></svg></button>
+<button class="intel-card" data-open="threat"><canvas data-diagram="threat"></canvas><div class="intel-copy"><small><i></i> 03 / HOSTILES</small><h3>Security Drones</h3></div><svg class="card-arrow"><use href="#i-open"/></svg></button>
+</div>
+</section>
+<footer class="base-footer"><span><i class="tiny-brand">///</i> CINDERLINE <b>/</b> OPERATIONS TERMINAL</span><span id="record">PERSONAL BEST <b>—</b></span></footer>
+</main>
+<div id="gameScreen" hidden><canvas id="world" aria-label="First person gameplay"></canvas>
+<div id="hud"><div class="hud-vignette"></div><div id="damage"></div>
+<div class="hud-task"><small id="waveLabel">ENGAGEMENT 01 / 03</small><strong id="waveTitle"></strong><span id="enemyCount"></span></div>
+<div class="compass"><div class="compass-values" id="compass"></div><i></i></div><button id="pauseButton" class="icon-btn" title="Pause" aria-label="Pause game"><svg><use href="#i-pause"/></svg></button>
+<div id="notice" class="notice"><small>CINDERLINE / MISSION COMMS</small><strong id="noticeText"></strong></div>
+<div id="targetPanel" hidden><small id="targetName"></small><div><i id="targetHealth"></i></div></div><div id="reticle"><b></b><i></i><i></i><i></i><i></i></div><div id="hitMark">×</div>
+<div class="health-box"><svg><use href="#i-shield"/></svg><div><small>SUIT INTEGRITY</small><strong><span id="hp">100</span><em> HP</em></strong><div class="hp-track"><i id="hpFill"></i></div></div></div>
+<div class="weapon-box"><small>VX-7 <b>/</b> ARC CARBINE</small><div><strong id="ammo">30</strong><em> / </em><span id="reserve">120</span></div><small id="weaponState">AUTO</small></div>
+<div class="radar"><canvas id="radar" width="180" height="180"></canvas></div><div id="reloadTrack" hidden><small>RELOADING</small><div><i></i></div></div>
+<div id="touchUI"><div id="lookPad"></div><div id="movePad"><i></i></div><button id="touchAim" aria-pressed="false">AIM</button><button id="touchJump">JUMP</button><button id="touchReload">R</button><button id="touchFire">FIRE</button></div>
+</div></div>
+<div id="dialogVeil" class="veil" hidden><section id="dialog" class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div class="dialog-top"><small id="dialogTag"></small><button id="closeDialog" class="icon-btn" aria-label="Close panel" title="Close"><svg><use href="#i-close"/></svg></button></div><h2 id="dialogTitle"></h2><div id="dialogBody"></div></section></div>
+<div id="loading" hidden><svg class="brand-mark"><use href="#brand"/></svg><p>Entering Ashfall Foundry</p><i></i></div>
+</body></html>

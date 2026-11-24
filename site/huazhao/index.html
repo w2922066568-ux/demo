@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#d9e9d9">
+  <meta name="description" content="花朝牌会，在春日水榭与朋友同桌斗地主。经典三人局，也可约好友双人单挑、四人同桌。">
+  <title>花朝牌会 · 经典斗地主</title>
+  <link rel="icon" href="./blossom.svg" type="image/svg+xml">
+  <link rel="preload" href="./art/table.webp" as="image">
+  <link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./table.css">
+<style>.pages-mode{margin:1rem auto 0;width:fit-content;max-width:calc(100% - 2rem);padding:.62rem .85rem;background:#f3eee0;color:#29382d;border-radius:.45rem;font:14px system-ui}.pages-mode a{color:#184e3a;font-weight:600}</style></head>
+<body><aside class="pages-mode">GitHub Pages 单人练习 · <a href="https://huazhao-card-parlor.sunnyvale19.chatgpt.site/">和好友在线开桌</a></aside>
+  <svg aria-hidden="true" class="symbols" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="f-flower" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.4"><path id="petal" d="M24 24c-1-5-10-11-7-17 1.7-4 5.5-5.7 7-6.5 1.5.8 5.3 2.5 7 6.5 3 6-6 12-7 17Z"/><use href="#petal" transform="rotate(72 24 24)"/><use href="#petal" transform="rotate(144 24 24)"/><use href="#petal" transform="rotate(216 24 24)"/><use href="#petal" transform="rotate(288 24 24)"/><circle cx="24" cy="24" r="4"/></g></symbol>
+    <symbol id="f-friends" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M2.5 19v-1.5c0-3 3-4.8 6.5-4.8s6.3 1.9 6.3 4.8V19m.2-13.8a3 3 0 0 1 0 5.6M18 13.3c2 .6 3.2 1.8 3.2 4V19"/></symbol>
+    <symbol id="f-room" viewBox="0 0 24 24"><path d="M4 21V8l8-5 8 5v13M2 10l10-7 10 7M9 21v-7h6v7M2 21h20"/></symbol>
+    <symbol id="f-cards" viewBox="0 0 24 24"><rect x="8" y="3" width="12" height="17" rx="2"/><path d="m5.2 5.3-2 .8L4.7 21l2 .4m7.3-7.9-2-2.5 2-2.6 2 2.6Z"/></symbol>
+    <symbol id="f-book" viewBox="0 0 24 24"><path d="M12 7c-3-2-6-2.6-9-1.4V19c3-1 6-.8 9 1.2 3-2 6-2.2 9-1.2V5.6C18 4.4 15 5 12 7Zm0 0v13"/></symbol>
+    <symbol id="f-sound" viewBox="0 0 24 24"><path d="m12 4-5 4.5H3v7h4l5 4.5Zm3.5 4.4a4.7 4.7 0 0 1 0 7.2m3-10a8 8 0 0 1 0 12.8"/></symbol>
+    <symbol id="f-mute" viewBox="0 0 24 24"><path d="m12 4-5 4.5H3v7h4l5 4.5Zm4 5 5 6m0-6-5 6"/></symbol>
+    <symbol id="f-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="f-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="5" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m7 11 8.5-4.8M7 13l8.5 4.8"/></symbol>
+    <symbol id="f-leave" viewBox="0 0 24 24"><path d="M11 4H4v16h7m-2-8h12m-4-4 4 4-4 4"/></symbol>
+    <symbol id="f-copy" viewBox="0 0 24 24"><rect x="8" y="7" width="12" height="14" rx="2"/><path d="M5 16H3V3h13v1"/></symbol>
+    <symbol id="f-add" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  </svg>
+  <main id="entry">
+    <div class="garden-art" aria-hidden="true"></div><div class="garden-shade"></div>
+    <header class="entry-header"><div class="book-mark"><svg class="flower"><use href="#f-flower"/></svg><span>经典斗地主</span></div>
+      <div class="head-actions"><button class="top-tool" data-ui="rules"><svg><use href="#f-book"/></svg><span>玩法</span></button><button id="sound-toggle" class="top-tool square" data-ui="sound" aria-label="开启音效"><svg><use href="#f-mute"/></svg></button></div>
+    </header>
+    <section id="welcome" class="parlor-panel" aria-labelledby="home-title">
+      <div class="art-ornament" aria-hidden="true"><i></i><svg><use href="#f-flower"/></svg><i></i></div>
+      <h1 id="home-title">花朝牌会</h1>
+      <p class="home-sub"><span></span>经典三人 · 双人单挑 · 四人同桌<span></span></p>
+      <div class="entry-choices"><button class="lacquer primary" data-ui="create"><svg><use href="#f-friends"/></svg>好友开桌</button><button class="lacquer light" data-ui="join"><svg><use href="#f-room"/></svg>凭码入席</button></div>
+      <button class="practice" data-ui="practice"><svg><use href="#f-cards"/></svg>单人练习</button>
+    </section>
+    <section id="lobby" class="waiting" hidden aria-label="好友牌桌"></section>
+  </main>
+  <main id="table" hidden></main>
+  <dialog id="dialog" aria-labelledby="dialog-title"><div id="dialog-content"></div></dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="net-status" id="net" role="status" hidden>正在重连牌桌…</div>
+  <noscript>请在浏览器开启 JavaScript 以进入牌会。</noscript>
+  <script type="module" src="./app.js"></script>
+</body></html>

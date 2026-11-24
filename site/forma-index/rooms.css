@@ -1,0 +1,254 @@
+/* Paper exhibition wall */
+html.scenes-on #works,
+html.scenes-on #notes,
+html.scenes-on #about {
+  width:100%;
+  max-width:none;
+  min-height:var(--room-height,calc(100svh - 136px));
+  isolation:isolate;
+  position:relative;
+}
+
+html.scenes-on #works {
+  color-scheme:light;
+  --room-ink:#29211e;
+  --peach:#8f432d;
+  --room-rule:#bdb0a3;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(2rem,5svh,4.2rem) max(var(--gutter),calc((100% - 1530px)/2 + 52px));
+  color:var(--room-ink);
+  background:radial-gradient(ellipse at 86% 0%,#fffdf6a1,transparent 63%),#eee9df;
+}
+
+html.scenes-on #works .section-head {
+  padding-bottom:clamp(1rem,2.3svh,1.65rem);
+  margin-bottom:clamp(1.4rem,3svh,2.5rem);
+  border-bottom:1px solid var(--room-rule);
+}
+html.scenes-on #works .section-head>div:first-child { display:flex; flex-direction:column-reverse; gap:.64rem; }
+html.scenes-on #works .section-eyebrow,
+html.scenes-on #notes .section-eyebrow,
+html.scenes-on #about .section-eyebrow {
+  font-family:var(--serif);
+  font-weight:400;
+  letter-spacing:-.05em;
+  line-height:.91;
+}
+html.scenes-on #works .section-eyebrow {
+  color:var(--room-ink);
+  font-size:clamp(4.5rem,min(8.7vw,12.5svh),9.2rem);
+}
+html.scenes-on #works .section-eyebrow .tiny-star,
+html.scenes-on #notes .section-eyebrow .tiny-star,
+html.scenes-on #about .section-eyebrow .tiny-star { display:none }
+html.scenes-on #works h2 {
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+  font:550 1rem/1.2 var(--sans);
+  letter-spacing:.13em;
+  margin:0;
+}
+html.scenes-on #works h2 sup { margin:0; font:400 .73rem/1.3 var(--mono);color:#705a4f; }
+html.scenes-on #works .view-switch { border:1px solid var(--room-rule);background:#e3dbcf;border-radius:3rem; }
+html.scenes-on #works .view-switch button { color:#695b52;border-radius:3rem;min-width:2.3rem;min-height:2.05rem }
+html.scenes-on #works .view-switch button[aria-pressed=true] { background:var(--room-ink);color:#fff5e9; }
+html.scenes-on #works .works-grid {gap:clamp(1rem,2.25vw,2.8rem)}
+html.scenes-on #works .work-card {border-radius:2px}
+html.scenes-on #works .card-image {
+  border-radius:2px;
+  aspect-ratio:auto;
+  height:clamp(188px,min(24vw,36.7svh),390px);
+  box-shadow:0 5px 16px -10px #39241d70;
+}
+html.scenes-on #works .card-code {
+  color:#372b25;
+  background:#fff4e4eb;
+  border:0;
+  border-radius:1px;
+  padding:.23rem .49rem;
+}
+html.scenes-on #works .card-open {background:#231923cc;color:#fff5ea}
+html.scenes-on #works .card-info {position:relative;align-items:start;padding:.84rem 0 1.05rem;border-bottom:1px solid var(--room-rule)}
+html.scenes-on #works .card-info h3 {display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.64rem;font-weight:520;font-size:1.09rem}
+html.scenes-on #works .card-info em {color:var(--room-ink);margin:0;font:italic clamp(1.42rem,2vw,2.2rem)/1.14 var(--serif);letter-spacing:-.025em}
+html.scenes-on #works .card-info p {color:#67594f;font-size:.82rem}
+html.scenes-on #works .card-info p span {color:#907b6a}
+html.scenes-on #works .swatch {position:relative;margin-top:.65rem;border:1px solid #372a2338}
+html.scenes-on #works .list-mode {gap:0}
+html.scenes-on #works .list-mode .work-card {grid-template-columns:clamp(88px,12vw,155px) 1fr;align-items:center;border-color:var(--room-rule);padding:.65rem 0;gap:1.5rem}
+html.scenes-on #works .list-mode .card-image {height:clamp(48px,6.5svh,78px)}
+html.scenes-on #works .list-mode .card-info {border:0;padding:0}
+html.scenes-on #works .list-mode .card-info h3 {font-size:1.06rem}
+html.scenes-on #works .list-mode .card-info em {font-size:1.52rem}
+
+/* The line study uses a full-size drafting surface and calibrated grid. */
+html.scenes-on #notes {
+  --peach:#d9b7ff;
+  --hair:#cbb8ee33;
+  --lab-accent:#f6aaad;
+  display:grid;
+  align-items:center;
+  border:0;
+  padding:clamp(2rem,4.8svh,4.4rem) 0;
+  background:radial-gradient(ellipse at 76% 45%,#342441 0%,#21192e 42%,#16131e 85%);
+  color:#f9edf8;
+}
+html.scenes-on #notes:has([data-note="1"][aria-pressed=true]) {--lab-accent:#ccadff}
+html.scenes-on #notes:has([data-note="2"][aria-pressed=true]) {--lab-accent:#eac191}
+html.scenes-on #notes .notes-layout {width:100%;max-width:1530px;grid-template-columns:minmax(250px,.69fr) minmax(0,1.31fr);gap:clamp(2rem,5.5vw,6rem)}
+html.scenes-on #notes .note-copy {display:grid;grid-template-columns:minmax(0,1fr);align-content:center}
+html.scenes-on #notes .note-copy>h2 {
+  order:-1;margin:0 0 .85rem;
+  font:500 .98rem/1.3 var(--sans);letter-spacing:.14em;color:#e4cbef;
+}
+html.scenes-on #notes .section-eyebrow {color:#faeaf3;font-style:italic;font-size:clamp(4.6rem,7.15vw,7.5rem)}
+html.scenes-on #notes .note-tabs {margin:clamp(1.6rem,4svh,3rem) 0 1.4rem;gap:.15rem;align-items:center;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+html.scenes-on #notes .note-tabs button {border:0;border-radius:0;background:transparent;color:#d0bfd0;padding:.8rem .75rem .65rem;min-height:2.7rem;position:relative}
+html.scenes-on #notes .note-tabs button[aria-pressed=true] {color:var(--lab-accent)}
+html.scenes-on #notes .note-tabs [aria-pressed=true]::after {content:"";position:absolute;inset:auto .65rem 0;height:2px;background:var(--lab-accent)}
+html.scenes-on #notes .note-copy h3 {font-size:clamp(1.1rem,1.48vw,1.5rem);line-height:1.55;font-weight:500}
+html.scenes-on #notes .note-copy>p:last-child {color:#cdbfd3;line-height:1.9;font-size:.96rem}
+html.scenes-on #notes .study-panel {
+  position:relative;
+  min-width:0;
+  padding:0;
+  border:1px solid #856b9273;
+  border-radius:3px;
+  background-color:#191521;
+  background-image:linear-gradient(90deg,#b18ec00c 1px,transparent 1px),linear-gradient(#b18ec00c 1px,transparent 1px),radial-gradient(ellipse at center,#51384f7a,transparent 68%);
+  background-size:28px 28px,28px 28px,100% 100%;
+  box-shadow:0 20px 55px #100b183b;
+}
+html.scenes-on #notes .study-label,
+html.scenes-on #notes .study-slider {
+  position:relative;z-index:1;
+  padding:.72rem clamp(.8rem,1.35vw,1.4rem);
+  background:#1b1624db;color:#dfcfe4;
+}
+html.scenes-on #notes .study-label {border-bottom:1px solid var(--hair)}
+html.scenes-on #notes .study-label span:last-child {color:#c5aed0}
+html.scenes-on #notes .study-slider{border-top:1px solid var(--hair)}
+html.scenes-on #notes .study-slider output{color:var(--lab-accent)}
+html.scenes-on #notes .study-panel canvas{
+  width:100%;height:clamp(245px,min(35vw,49svh),530px);
+  background:linear-gradient(90deg,transparent calc(50% - .5px),#c9afd81b calc(50% - .5px),#c9afd81b calc(50% + .5px),transparent calc(50% + .5px)),
+    linear-gradient(transparent calc(50% - .5px),#c9afd81b calc(50% - .5px),#c9afd81b calc(50% + .5px),transparent calc(50% + .5px));
+}
+html.scenes-on #notes .study-panel::after {
+  content:"";position:absolute;inset:3.7rem .85rem 3.5rem;pointer-events:none;
+  background:
+    linear-gradient(#cebed399,#cebed399) left top / 8px 1px,
+    linear-gradient(#cebed399,#cebed399) left top / 1px 8px,
+    linear-gradient(#cebed399,#cebed399) right top / 8px 1px,
+    linear-gradient(#cebed399,#cebed399) right top / 1px 8px,
+    linear-gradient(#cebed399,#cebed399) left bottom / 8px 1px,
+    linear-gradient(#cebed399,#cebed399) left bottom / 1px 8px,
+    linear-gradient(#cebed399,#cebed399) right bottom / 8px 1px,
+    linear-gradient(#cebed399,#cebed399) right bottom / 1px 8px;
+  background-repeat:no-repeat;
+}
+
+/* The colophon is a warm studio with a freely folded, printed exhibition book. */
+html.scenes-on #about {
+  --peach:#692d23;
+  --room-rule:#7f3f3554;
+  color-scheme:light;
+  display:grid;
+  align-content:center;
+  padding:clamp(2rem,5svh,4.4rem) max(var(--gutter),calc((100% - 1530px)/2 + 52px));
+  color:#321d1b;
+  background:radial-gradient(ellipse at 9% 0%,#f6b29b 0%,transparent 54%),radial-gradient(ellipse at 81% 87%,#c16c5c 0%,transparent 58%),#e3977f;
+}
+html.scenes-on #about>.section-eyebrow {
+  font-size:clamp(3.45rem,min(6.5vw,10.7svh),7.8rem);
+  padding-bottom:clamp(.9rem,2.7svh,1.8rem);border-bottom:1px solid var(--room-rule);
+  color:#462821;
+}
+html.scenes-on #about .about-grid {
+  width:100%;margin-top:clamp(1.3rem,3.6svh,2.8rem);
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  grid-template-rows:auto auto;gap:clamp(1rem,2.8svh,2.2rem) clamp(1.7rem,4.2vw,5rem);
+}
+html.scenes-on #about .about-grid>div:first-child{grid-area:1/1;align-self:end}
+html.scenes-on #about .about-grid h2{margin:0 0 .78rem;font-size:clamp(1.65rem,2.45vw,2.9rem);letter-spacing:-.035em;font-weight:520}
+html.scenes-on #about .about-grid p{color:#50322c;font-size:clamp(.92rem,1.11vw,1.1rem);line-height:1.88}
+html.scenes-on #about .about-grid>dl{grid-area:2/1;align-self:start;max-width:33rem}
+html.scenes-on #about .about-grid dl>div{border-color:var(--room-rule);padding:.55rem 0;font-size:.82rem}
+html.scenes-on #about .about-grid dt{color:#653c32}
+html.scenes-on #about .about-grid dd{color:#321d1b}
+html.scenes-on #about .room-folio{grid-area:1/2/3/3;position:relative;display:grid;place-items:center;min-width:0;height:clamp(280px,min(35.5vw,49svh),470px);perspective:1100px}
+html.scenes-on #about .folio-camera{width:93%;height:88%;display:grid;place-items:center;transform-style:preserve-3d;transform:rotateX(var(--folio-pitch,0deg)) rotateY(var(--folio-yaw,0deg));transition:transform 650ms var(--ease)}
+html.scenes-on #about .folio-book{width:35%;aspect-ratio:.66;position:relative;transform-style:preserve-3d;transform:rotateX(-9deg) rotateY(-14deg) rotateZ(-8deg);animation:catalogue-breathe 11s ease-in-out infinite}
+html.scenes-on #about .folio-leaf{position:absolute;inset:0;display:flex;flex-direction:column;padding:clamp(.4rem,.74vw,.85rem);border:1px solid #fff5df91;backface-visibility:hidden;transform-style:preserve-3d;background-color:#f4e9d7;box-shadow:0 2px 1px #764d3b70}
+html.scenes-on #about .folio-leaf>img{width:100%;height:76%;object-fit:cover;flex:0 0 76%}
+html.scenes-on #about .folio-caption{margin-top:auto;color:#392c29;font:italic clamp(.83rem,1.55vw,1.75rem)/1 var(--serif);letter-spacing:-.03em;white-space:nowrap}
+html.scenes-on #about .folio-mark{display:block;height:2px;width:16%;margin-top:4%;background:#3d2e268c}
+html.scenes-on #about .folio-leaf::after{content:"";position:absolute;inset:0;pointer-events:none}
+html.scenes-on #about .folio-leaf:nth-child(1){left:-100%;right:100%;transform-origin:right 50%;transform:rotateY(-36deg);animation:catalogue-left 11s ease-in-out infinite}
+html.scenes-on #about .folio-leaf:nth-child(1)::after{background:linear-gradient(90deg,#ffe4bd08 60%,#66412f25)}
+html.scenes-on #about .folio-leaf:nth-child(2)::after{background:linear-gradient(105deg,#fff7e60a 45%,#5c413520 99%)}
+html.scenes-on #about .folio-leaf:nth-child(3){left:100%;right:-100%;transform-origin:left 50%;transform:rotateY(38deg);animation:catalogue-right 11s ease-in-out infinite}
+html.scenes-on #about .folio-leaf:nth-child(3)::after{background:linear-gradient(90deg,#462b2325,#462b2303 45%)}
+html.scenes-on #about .folio-shadow{position:absolute;width:88%;height:19%;border-radius:50%;left:8%;bottom:2%;background:radial-gradient(ellipse at center,#6e372d85 0%,#8c4c3f50 39%,transparent 71%);filter:blur(8px);transform:rotate(-5deg)}
+@keyframes catalogue-breathe{0%,100%{transform:translateY(0) rotateX(-9deg) rotateY(-14deg) rotateZ(-8deg)}50%{transform:translateY(-3%) rotateX(-3deg) rotateY(-5deg) rotateZ(-5deg)}}
+@keyframes catalogue-left{0%,100%{transform:rotateY(-36deg)}50%{transform:rotateY(-18deg)}}
+@keyframes catalogue-right{0%,100%{transform:rotateY(38deg)}50%{transform:rotateY(20deg)}}
+@media (prefers-reduced-motion:reduce) {
+  html.scenes-on #about .folio-camera,
+  html.scenes-on #about .folio-book,
+  html.scenes-on #about .folio-leaf {animation:none!important;transition:none!important}
+}
+@media (max-width:850px) and (min-width:701px){
+  html.scenes-on #notes .notes-layout{grid-template-columns:.76fr 1.24fr;gap:1.6rem}
+  html.scenes-on #notes .section-eyebrow{font-size:4.25rem}
+  html.scenes-on #works .works-grid{gap:.85rem}
+  html.scenes-on #works .card-info h3{display:block}
+  html.scenes-on #works .card-info em{display:block;margin-top:.17rem}
+}
+@media (max-width:700px) {
+  html.scenes-on #works,
+  html.scenes-on #notes,
+  html.scenes-on #about{min-height:var(--room-height,calc(100svh - 118px))}
+  html.scenes-on #works{justify-content:flex-start;padding:2.1rem var(--gutter) 2rem}
+  html.scenes-on #works .section-head{padding-bottom:1.15rem;margin-bottom:1.4rem}
+  html.scenes-on #works .section-head>div:first-child{gap:.5rem}
+  html.scenes-on #works h2,html.scenes-on #notes .note-copy>h2{font-size:.86rem}
+  html.scenes-on #works .section-eyebrow{font-size:clamp(3.1rem,12vw,5rem)}
+  html.scenes-on #works .works-grid{grid-template-columns:minmax(0,1fr);gap:1.5rem}
+  html.scenes-on #works .card-image{height:auto;aspect-ratio:1.72}
+  html.scenes-on #works .card-info{padding:.63rem 0 .68rem}
+  html.scenes-on #works .card-info em{font-size:1.6rem}
+  html.scenes-on #works .list-mode{gap:0}
+  html.scenes-on #works .list-mode .work-card{grid-template-columns:22% minmax(0,1fr);gap:.8rem}
+  html.scenes-on #works .list-mode .card-image{width:100%;height:auto;aspect-ratio:1.4}
+  html.scenes-on #works .list-mode .card-info em{font-size:1.17rem}
+  html.scenes-on #notes{padding:2.05rem 0}
+  html.scenes-on #notes .notes-layout{grid-template-columns:minmax(0,1fr);gap:0}
+  html.scenes-on #notes .note-copy{display:contents}
+  html.scenes-on #notes .note-copy>h2{order:-4;margin-bottom:.4rem}
+  html.scenes-on #notes .section-eyebrow{order:-3;font-size:clamp(3.5rem,14vw,5.25rem)}
+  html.scenes-on #notes .note-tabs{order:-2;margin:1rem 0 .9rem;gap:.35rem}
+  html.scenes-on #notes .study-panel{order:-1;margin-bottom:1rem}
+  html.scenes-on #notes .study-panel canvas{height:clamp(185px,54vw,280px)}
+  html.scenes-on #notes .note-copy h3{font-size:1.05rem;margin-bottom:.4rem}
+  html.scenes-on #notes .note-copy>p:last-child{font-size:.88rem;line-height:1.8}
+  html.scenes-on #notes .study-label,html.scenes-on #notes .study-slider{padding:.48rem .65rem}
+  html.scenes-on #notes .study-panel::after {inset:3.35rem .65rem 3rem}
+  html.scenes-on #about{padding:2.05rem var(--gutter);align-content:start}
+  html.scenes-on #about>.section-eyebrow{font-size:clamp(2.6rem,11.65vw,5rem);padding-bottom:.85rem}
+  html.scenes-on #about .about-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;gap:1rem;margin-top:.65rem}
+  html.scenes-on #about .room-folio{grid-area:auto;order:-1;height:clamp(170px,52vw,276px)}
+  html.scenes-on #about .folio-camera{width:88%}
+  html.scenes-on #about .folio-book{width:31%;aspect-ratio:.68}
+  html.scenes-on #about .folio-leaf{padding:.32rem}
+  html.scenes-on #about .about-grid>div:first-child,html.scenes-on #about .about-grid>dl{grid-area:auto}
+  html.scenes-on #about .about-grid h2{font-size:1.48rem;margin-bottom:.55rem}
+  html.scenes-on #about .about-grid p{font-size:.9rem;line-height:1.83}
+}
+@media(max-width:355px) {
+  html.scenes-on #works .section-eyebrow{font-size:2.7rem}
+  html.scenes-on #works .view-switch button{min-width:1.75rem;width:1.75rem}
+}

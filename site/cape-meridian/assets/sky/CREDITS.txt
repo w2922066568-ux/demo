@@ -1,0 +1,23 @@
+Offshore relief uses adapted and scaled Faroe Islands elevation samples. Terrain Tiles were accessed on 18 November 2026 from https://registry.opendata.aws/terrain-tiles/ .
+The source heights are distributed by Mapzen / Tilezen, a Linux Foundation project.
+ArcticDEM terrain data DEM(s) were created from DigitalGlobe, Inc. imagery and funded under NSF awards 1043681, 1559691, and 1542736. Europe terrain data produced using Copernicus data and information funded by the European Union — EU-DEM layers. Global GMTED2010 and SRTM data courtesy of the U.S. Geological Survey. Global ETOPO1 terrain data from NOAA.
+Data attribution and licenses: https://github.com/tilezen/joerd/blob/master/docs/attribution.md
+Offshore coast masks use Natural Earth 1:10m land, public domain: https://www.naturalearthdata.com/about/terms-of-use/
+
+Day HDRI — Overcast Soil (Pure Sky), Poly Haven, CC0.
+Original photograph by Sergej Majboroda, sky editing by Jarod Guest.
+https://polyhaven.com/a/overcast_soil_puresky
+The 8K photograph is locally contrast-graded, rotated to 258 degrees compass bearing,
+and paired with a 512 x 256 linear radiance map. Rebuild with:
+python tools/prepare_sky.py overcast_soil_puresky_8k.hdr day
+
+Evening HDRI — Kloppenheim 06 (Pure Sky), Poly Haven, CC0.
+https://polyhaven.com/a/kloppenheim_06_puresky
+The panorama is exposure-mapped to an offline 4K sky with a separate radiance map for lighting.
+
+Water surface normal image distributed in the three.js r169 examples.
+https://github.com/mrdoob/three.js/blob/r169/examples/textures/waternormals.jpg
+Reflection camera calculation follows the oblique clipping technique used in three.js Reflector (MIT).
+https://github.com/mrdoob/three.js/blob/r169/examples/jsm/objects/Reflector.js
+The surf lace, shoreline distance field, ocean shader and audio are generated for this project.
+

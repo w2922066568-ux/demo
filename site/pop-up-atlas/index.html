@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#171c1a">
+  <meta name="description" content="在一本不断展开的纸艺图册里，跟随提灯的旅行者穿过山谷、松林与河岸。">
+  <link rel="icon" type="image/svg+xml" href="./mark.svg">
+  <title>Pop-up Atlas · 纸上漫游</title>
+  <script type="module" crossorigin src="./assets/index-jwHdzLJW.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CDHL4gI_.css">
+</head>
+<body>
+  <main id="atlas">
+    <header class="topbar">
+      <div class="brand"><img src="./mark.svg" alt="" width="38" height="38"><span>Pop-up Atlas</span></div>
+      <span class="brand-divider"></span><span class="edition">纸上漫游</span>
+      <nav class="tools" aria-label="声音和显示">
+        <button class="utility sound" id="sound" aria-pressed="true" title="切换声音（M）"><i class="sound-bars"><b></b><b></b><b></b><b></b></i><span>声音开启</span></button>
+        <button class="utility" id="help" title="操作指南（?）"><i data-icon="help"></i><span>操作指南</span></button>
+        <span class="tool-divider"></span>
+        <button class="icon-button" id="fullscreen" aria-label="进入全屏" title="进入全屏（F）"><i data-icon="expand"></i></button>
+      </nav>
+    </header>
+    <section id="stage" aria-label="立体书漫游场景">
+      <canvas id="world" tabindex="0" aria-label="立体书世界，使用 WASD、方向键或点击书页移动"></canvas>
+      <div class="edge-wash"></div>
+      <div class="chapter-title">
+        <div class="eyebrow"><span class="accent-rule"></span><span id="chapter-number">CHAPTER 01</span></div>
+        <h1 id="chapter-en" lang="en">Ember Valley</h1>
+        <p id="chapter-cn">余烬山谷</p>
+      </div>
+      <div class="lens" role="group" aria-label="镜头距离">
+        <button id="view-atlas" aria-pressed="true" title="整本书全景"><i data-icon="atlas"></i><span>全景</span></button>
+        <button id="view-trail" aria-pressed="false" title="跟随旅行者近景"><i data-icon="trail"></i><span>跟随</span></button>
+      </div>
+      <div class="stage-foot">
+        <div class="movement-hint"><span class="keyset" aria-hidden="true"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span><span class="desktop-hint">行走</span><span class="small-divider"></span><i data-icon="pointer"></i><span class="tap-hint">点击书页前往</span></div>
+        <div class="distance"><i data-icon="route"></i><span class="distance-label">已漫游</span><strong id="distance">0.0</strong><span>m</span></div>
+      </div>
+      <div id="loading" role="status"><span class="load-line"></span><span id="load-text">正在展开书页…</span></div>
+    </section>
+    <section class="shelf" aria-label="章节选择">
+      <div class="shelf-heading"><span class="shelf-kicker">THE ATLAS</span><h2>章节目录</h2></div>
+      <div class="chapters">
+        <button class="chapter-card ember" aria-pressed="true" data-region="0"><span class="thumbnail"><img data-thumb="0" alt=""></span><span class="card-copy"><small>CH. 01</small><strong>余烬山谷</strong></span><i class="selected-mark"></i></button>
+        <button class="chapter-card pine" aria-pressed="false" data-region="1"><span class="thumbnail"><img data-thumb="1" alt=""></span><span class="card-copy"><small>CH. 02</small><strong>松影林地</strong></span><i class="selected-mark"></i></button>
+        <button class="chapter-card moon" aria-pressed="false" data-region="2"><span class="thumbnail"><img data-thumb="2" alt=""></span><span class="card-copy"><small>CH. 03</small><strong>月照河湾</strong></span><i class="selected-mark"></i></button>
+      </div>
+    </section>
+  </main>
+  <dialog id="guide" aria-labelledby="guide-title">
+    <button class="icon-button close" id="close-help" aria-label="关闭操作指南"><i data-icon="close"></i></button>
+    <p class="eyebrow"><span class="accent-rule"></span> FIELD GUIDE</p>
+    <h2 id="guide-title">操作指南</h2>
+    <p class="guide-intro">带上提灯，走向下一片正在展开的书页。</p>
+    <dl>
+      <div><dt>自由行走</dt><dd><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span> 或方向键</span></dd></div>
+      <div><dt>走到指定位置</dt><dd>点击或轻触书页</dd></div>
+      <div><dt>切换镜头</dt><dd>全景 / 跟随 <kbd>V</kbd></dd></div>
+      <div><dt>声音开关</dt><dd><kbd>M</kbd></dd></div>
+      <div><dt>全屏漫游</dt><dd><kbd>F</kbd></dd></div>
+    </dl>
+    <button class="resume" id="resume">继续漫游</button>
+  </dialog>
+</body>
+</html>
