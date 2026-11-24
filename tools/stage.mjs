@@ -63,3 +63,4 @@ for (const [source,target] of [
   ['中世纪教堂概念图/教堂-清晨.png','chapel.png'],
 ]) await copyFile(absolute(source), publish('media/' + target));
 await writeFile(publish('.nojekyll'), '');
+await import('./wire-portfolio.mjs');

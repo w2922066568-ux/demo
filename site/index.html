@@ -5,46 +5,31 @@
 <meta name="description" content="可以在浏览器游玩的游戏、交互作品和美术图册。">
 <meta name="theme-color" content="#151918"><title>Demo · 作品集</title>
 <link rel="stylesheet" href="./style.css"><link rel="icon" href="./pop-up-atlas/mark.svg" type="image/svg+xml">
-<script>
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash &&
-      performance.getEntriesByType('navigation')[0]?.type !== 'back_forward') {
-    document.documentElement.dataset.opening = '';
-  }
-</script>
+
+<link rel="stylesheet" href="./passage.css" data-portfolio-passage>
+<script src="./passage.js"></script>
 </head>
 <body>
+<dialog id="front-cover" aria-label="作品集开场">
+  <div class="jacket">
+    <div class="jacket-frame" aria-hidden="true"></div>
+    <div class="jacket-title"><i aria-hidden="true">✦</i><strong lang="en">Demo</strong><span>作品集</span></div>
+    <div class="print-stack" aria-hidden="true">
+      <figure class="print ocean"><img data-src="./media/previews/abyssal.webp" alt=""><figcaption>深渊回声</figcaption></figure>
+      <figure class="print coast"><img data-src="./media/previews/cape-meridian.webp" alt=""><figcaption>风岬岛</figcaption></figure>
+      <figure class="print valley"><img data-src="./media/previews/atlas.webp" alt=""><figcaption lang="en">Pop-up Atlas</figcaption></figure>
+    </div>
+    <div class="jacket-foot"><span>游戏 · 交互设计 · 概念美术</span><button type="button" autofocus>跳过开场 <span aria-hidden="true">↗</span></button></div>
+  </div>
+</dialog>
 <header class="header"><a class="wordmark" href="./">Demo</a><nav aria-label="作品目录"><a href="#browser">网页作品</a><a href="#multiplayer">好友联机</a><a href="#art">概念图册</a></nav></header>
 <main>
   <section class="hero opening-stage" aria-labelledby="title">
     <img src="./media/previews/atlas-1440.webp" srcset="./media/previews/atlas-720.webp 720w, ./media/previews/atlas-1440.webp 1440w" sizes="100vw" alt="" fetchpriority="high">
-    <div class="opening-book" aria-hidden="true">
-      <div class="leaf leaf-left"><div class="engraving"><i></i><b></b></div></div>
-      <div class="leaf leaf-right"><div class="engraving"><i></i><b></b></div></div>
-    </div>
     <div class="hero-copy"><h1 id="title"><em>Demo</em> <span>作品集</span></h1><p>游戏、交互设计与概念美术。</p><a class="button" href="#browser">浏览作品</a></div>
     <button class="opening-replay" type="button" hidden><span aria-hidden="true">↺</span> 重播开场</button>
   </section>
-  <script>
-    (() => {
-      const root = document.documentElement;
-      const stage = document.querySelector('.opening-stage');
-      const button = stage.querySelector('.opening-replay');
-      const motion = matchMedia('(prefers-reduced-motion: reduce)');
-      function finish() { delete root.dataset.opening; }
-      function sync() { if (motion.matches) finish(); button.hidden = motion.matches; }
-      stage.addEventListener('animationend', e => {
-        if (e.animationName === 'folio-finish') finish();
-      });
-      button.addEventListener('click', () => {
-        finish();
-        void stage.offsetWidth;
-        if (!motion.matches) root.dataset.opening = '';
-      });
-      window.addEventListener('pagehide', finish);
-      motion.addEventListener('change', sync);
-      sync();
-    })();
-  </script>
+  
   <section class="section" id="browser">
     <div class="section-heading"><h2>网页作品</h2><p>点击作品，在浏览器中打开。</p></div>
     <div class="grid">
@@ -74,4 +59,4 @@
   </section>
 </main>
 <footer>Demo 作品集</footer>
-</body></html>
+<script src="./portfolio.js"></script></body></html>

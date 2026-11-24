@@ -19,3 +19,4 @@ const sharedWasm = 'loadPromise = preloader.loadPromise("../valley-chapel/index.
 const share = await wasmDigest('valley-chapel') === await wasmDigest('sunless-belfry');
 const output = engine.replace(original, replacement).replace(sharedWasm, localWasm);
 await writeFile(enginePath, share ? output.replace(localWasm, sharedWasm) : output);
+await import('./wire-portfolio.mjs');

@@ -1,0 +1,23 @@
+@view-transition{navigation:auto}
+.portfolio-return{
+  position:fixed;right:0;top:46%;z-index:490;display:inline-flex;align-items:center;
+  gap:6px;padding:9px 10px 9px 8px;border-radius:20px 0 0 20px;border:1px solid #cfbd9f55;border-right:0;
+  background:#17211edb;color:#eee7d5;text-decoration:none;font:500 12px/1.2 system-ui,sans-serif;
+  opacity:.74;transition:opacity .15s
+}
+.portfolio-return:hover,.portfolio-return:focus-visible{opacity:1;color:white}
+.portfolio-return[hidden]{display:none}
+@media(max-width:660px){.portfolio-return{font-size:11px;padding:8px 6px}}
+@media(prefers-reduced-motion:no-preference){
+  ::view-transition-old(root){animation:portfolio-retreat .46s cubic-bezier(.22,.67,.18,1) both}
+  ::view-transition-new(root){animation:portfolio-enter .46s cubic-bezier(.18,.75,.18,1) both}
+  html[data-direction="back"]::view-transition-old(root){z-index:1;animation:portfolio-leave .39s cubic-bezier(.55,.06,.44,1) both}
+  html[data-direction="back"]::view-transition-new(root){animation:portfolio-restore .39s ease-out both}
+  .passage-fallback{animation:portfolio-fallback .28s ease-out}
+}
+@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}.portfolio-return{transition:none}}
+@keyframes portfolio-enter{from{clip-path:inset(var(--passage-inset,5% 6% 6% 5%) round 9px);opacity:.7}to{clip-path:inset(0 round 0);opacity:1}}
+@keyframes portfolio-leave{from{clip-path:inset(0 round 0);opacity:1}to{clip-path:inset(var(--passage-inset,8% 8% 12% 8%) round 9px);opacity:0}}
+@keyframes portfolio-retreat{to{transform:scale(.982);opacity:.65}}
+@keyframes portfolio-restore{from{transform:scale(.982);opacity:.65}}
+@keyframes portfolio-fallback{from{opacity:.78}to{opacity:1}}
