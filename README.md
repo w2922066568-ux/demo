@@ -36,4 +36,4 @@ sha256sum --check packs/sunless-belfry.sha256
 
 ## 更新
 
-在 `Demo` 下运行 `node Demo-Pages/tools/stage.mjs`，更新已构建的静态项目、图册和演示录像。更新 Godot 作品时使用 4.7.2 的无多线程 Web 导出。若无日钟庭的 `index.pck` 更新，运行 `node Demo-Pages/tools/pack-godot.mjs` 重新分片。若输出尺寸明显变化，核对 `packs/` 中的分片清单后再提交。
+在 `Demo` 下运行 `node Demo-Pages/tools/stage.mjs`，更新已构建的静态项目、图册和演示录像。更新 Godot 作品时使用 4.7.2 的无多线程 Web 导出。重新导出无日钟庭后，运行 `node Demo-Pages/tools/finish-belfry-web.mjs`，在玩家点击或按键后捕获鼠标。若 `index.pck` 更新，运行 `node Demo-Pages/tools/pack-godot.mjs` 重新分片。若输出尺寸明显变化，核对 `packs/` 中的分片清单后再提交。
